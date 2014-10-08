@@ -1,6 +1,6 @@
 starCraft
 =========
-https://www.maidsafe.org/t/project-star-craft/1690
+MaidSafe.org link directing to the project: https://www.maidsafe.org/t/project-star-craft/1690
 
 Project starCraft
 
