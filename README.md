@@ -4,7 +4,7 @@ MaidSafe.org link directing to the project: https://www.maidsafe.org/t/project-s
 
 Project starCraft
 
-Intends to free all people from any sort of centralization at a fundamental level. This project will complete a command line interface and API for others to use.
+Intends to free all people from any sort of centralization at a fundamental level in item creation and issue. This project will complete a command line interface and API for others to use.
 
 Out of the box, anyone should be able to import a private key for SafeCoins
 http://maidsafe.net/safecoin
