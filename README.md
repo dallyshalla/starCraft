@@ -13,4 +13,5 @@ Support for Bitcoin private key import
 https://bitcoin.org/bitcoin.pdf
 
 The system shall run on MaidSafe Technology in order to ensure Freedom of transmission, Security from spying, and Safety from theft.
+http://maidsafe.net
 
