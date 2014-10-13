@@ -7,13 +7,9 @@
 namespace starcraft {
 
   class BUY {
-  
-  public:
-    std::string 
-  
-  }
   private:
-    void buyQuery();
+
+  public:
 }
 
 
