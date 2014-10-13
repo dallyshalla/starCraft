@@ -7,9 +7,10 @@
 
 namespace starcraft {
 
-  class BUY {
+  class tradeBuy {
   private:
-
+  int buy(std::string buy_item, double buy_quantity, std::string
+      trade_item, double trade_quantity);
   public:
 }
 
