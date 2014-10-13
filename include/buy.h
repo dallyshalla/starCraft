@@ -12,7 +12,8 @@ namespace starcraft {
     std::string 
   
   }
-
+  private:
+    void buyQuery();
 }
 
 
