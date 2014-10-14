@@ -11,10 +11,8 @@ namespace starcraft {
   private:
 
   public:
-    int buy(std::string buy_item, double buy_quantity, std::string
-      trade_item, double trade_quantity);
-}
-
+    int buy(std::string buy_item, int buy_quantity, std::string
+        trade_item, int trade_quantity);
 
 
 
