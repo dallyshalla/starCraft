@@ -15,6 +15,9 @@ namespace starcraft {
         trade_item, int trade_quantity);
 
 
+  };
+
+}
 
 
 
