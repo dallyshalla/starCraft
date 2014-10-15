@@ -1,6 +1,16 @@
 #include <iostream>
 #include <istream>
 #include "../include/buy.h"
+class Authentication {
+  
+
+}
+class Buy {
+  std::string userID;
+  public:
+    void buy(std::string, std::string, int, std::string, int);
+    
+}
 int buy1;
 int trade1;
 std::string buyitem;
@@ -11,7 +21,8 @@ int balance2 = 1000;
 std::string user1;
 std::string user2;
 int yesorno;
-
+int setBalance(int)
+void getBalance(std::string);
 int main()
 {
   std::cout << "enter username 1" << std::endl;
@@ -22,8 +33,8 @@ int main()
   std::cin >> yesorno;
   if(yesorno == 0) 
   {
-    std::cout << "user 1 balance: " << balance1 << "SafeCoin" << std::endl;
-    std::cout << "user 2 balance: " << balance2 << "SafeCoin" << std::endl;
+    std::cout << "user 1 balance: " << balance1 << " SafeCoin" << std::endl;
+    std::cout << "user 2 balance: " << balance2 << " SafeCoin" << std::endl;
   }
   std::cout << "enter an item" << std::endl;
   std::cin >> buyitem;
@@ -35,4 +46,13 @@ int main()
   std::cin >> trade1;
 
   return 0;  
+}
+
+void getBalance(std::string user)
+{
+  
+}
+int setBalance(std::string user, int balance)
+{
+  
 }
