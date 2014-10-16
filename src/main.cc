@@ -2,17 +2,26 @@
 #include <istream>
 #include "../include/buy.h"
 class Authentication {
-  
+  public:
+    void storeID(std::string);
+    std::string userID;
 
-}
+};
 class Buy {
   std::string userID;
   public:
     void buy(std::string, std::string, int, std::string, int);
-    
-}
+    int plusplus(int a, int b)
+    {
+      return a - b;
+    } 
+};
 int buy1;
 int trade1;
+int iquantity1[4000];
+int iquantity2[4000];
+std::string iname1[4000];
+std::string iname2[4000];
 std::string buyitem;
 std::string tradeitem;
 using namespace starcraft;
@@ -21,10 +30,13 @@ int balance2 = 1000;
 std::string user1;
 std::string user2;
 int yesorno;
-int setBalance(int)
+int setBalance(int);
 void getBalance(std::string);
 int main()
 {
+  Authentication auth;
+  auth.userID = user1;
+  Buy b;
   std::cout << "enter username 1" << std::endl;
   std::cin >> user1; 
   std::cout << "enter a name for user 2" << std::endl;
@@ -44,6 +56,7 @@ int main()
   std::cin >> tradeitem;
   std::cout << "enter the quantity of the trade item" << std::endl;
   std::cin >> trade1;
+  std::cout << b.plusplus(buy1, trade1);
 
   return 0;  
 }
