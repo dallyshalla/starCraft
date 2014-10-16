@@ -52,7 +52,7 @@ int main()
   std::cin >> yesorno;
   if(yesorno == 12)
   {
-    for(int i = 0; i < location1; i++)
+    for(int i = 0; i <= location1; i++)
     {
       std::cout << iname1[i] << std::endl;
       std::cout << iquantity1[i] << std::endl;
