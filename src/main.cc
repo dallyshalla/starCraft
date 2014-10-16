@@ -16,6 +16,9 @@ class Buy {
       return a - b;
     } 
 };
+void storeItem(std::string, std::string, int, int, int);
+int location1 = 0;
+int location2 = 0;
 int buy1;
 int trade1;
 int iquantity1[4000];
@@ -68,4 +71,10 @@ void getBalance(std::string user)
 int setBalance(std::string user, int balance)
 {
   
+}
+void storeItem(std::string itemName, std::string storename[], int quantity, int quantitystore[], int locator)
+{
+  storename[locator] = itemName;
+  quantitystore[locator] = quantity;
+  locator++;
 }
