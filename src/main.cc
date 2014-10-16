@@ -16,9 +16,11 @@ class Buy {
       return a - b;
     } 
 };
-void storeItem(std::string, std::string, int, int, int);
+void storeItem(std::string, std::string[], int, int[], int);
 int location1 = 0;
 int location2 = 0;
+std::string newitemname1;
+int newitemquantity1;
 int buy1;
 int trade1;
 int iquantity1[4000];
@@ -37,6 +39,26 @@ int setBalance(int);
 void getBalance(std::string);
 int main()
 {
+  std::cout << "make a new item" << std::endl;
+  std::cout << "what is the name of your new item?" << std::endl;
+  std::cin >> newitemname1;
+  std::cout << "how much of " << newitemname1 <<  " will be made?" << std::endl;
+  std::cin >> newitemquantity1;
+  storeItem(newitemname1, iname1, newitemquantity1, iquantity1, location1);
+  std::cout << "press 12 to retrieve made items" << std::endl;
+  std::cout << iquantity1[0] << std::endl;
+  std::cout << iname1[0] << std::endl;
+  std::cout << location1 << std::endl;
+  std::cin >> yesorno;
+  if(yesorno == 12)
+  {
+    for(int i = 0; i < location1; i++)
+    {
+      std::cout << iname1[i] << std::endl;
+      std::cout << iquantity1[i] << std::endl;
+    }
+  
+  }
   Authentication auth;
   auth.userID = user1;
   Buy b;
