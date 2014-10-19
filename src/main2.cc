@@ -22,7 +22,7 @@ class member {
     }
 };
 
-
+std::string activeUser;
 int answer;
 int main()
 {
@@ -39,6 +39,10 @@ int main()
     mem1.loadCoins(mem1.username);
     std::cout << mem1.username << " you'll start off with " << mem1.starCoins << " starCoins, use them wisely" << std::endl;
   }
+  else if (answer != 1)
+  {
+    return 0;
+  }
   std::cout << "You can make a second user and simulate exchange" << std::endl;
   std::cout << "1. Start a new user" << std::endl;
   std::cout << "0. Exit" << std::endl;
@@ -50,7 +54,26 @@ int main()
     mem2.loadCoins(mem2.username);
     std::cout << mem2.username << " you'll start off with " << mem2.starCoins << " starCoins, use them wisely" << std::endl; 
   }
-  
+  else if (answer != 1)
+  {
+    return 0;
+  }
+  std::cout << "Now that you are in, and so is yourself twice or your friend you can now decide to simulate economy :)" << std::endl;
+  std::cout << std::endl;
+  std::cout << "select who is acting now" << std::endl;
+  std::cout << "1. " << mem1.username << std::endl;
+  std::cout << "2. " << mem2.username << std::endl;
+  std::cin >> answer;
+  if(answer == 1)
+  {
+    activeUser = mem1.username;
+    std::cout << "welcome " << mem1.username << " you are the active user" << std::endl;
+  }
+  else if (answer == 2) 
+  {
+    activeUser = mem2.username;
+    std::cout << "welcome " << mem2.username << " you are the active user" << std::endl;
+  }
 
   return 0;
 
