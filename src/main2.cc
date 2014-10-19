@@ -3,20 +3,25 @@
 
 class member {
   public:
+  int starCoins;
   std::string username;
   std::string inventory[4000];
   int inventoryQuantities[4000];
   std::string gainedInventory[4000];
   int gainedQuantites[4000];
-  int startCoins;
   public:
     void buy(std::string);
     void sell(std::string);
     void createItems(std::string);
     void destroyItems(std::string);
     void storeNewItem(std::string);
-
+    void loadCoins(std::string)
+    {
+      starCoins = 10000;
+    }
 };
+
+
 int answer;
 int main()
 {
@@ -30,10 +35,13 @@ int main()
   {
     std::cout << "What is your username to be?" << std::endl;
     std::cin >> mem1.username;
-    std::cout << mem1.username << std::endl;
-  
-  
+    std::cout << mem1.username << std::endl;  
+    mem1.loadCoins(mem1.username);
+    std::cout << mem1.starCoins << std::endl;
   }
+  std::cout << mem1.username << " you'll start off with " << mem1.startCoins << " startCoins, use them wisely"
+    << std::endl;
+
   return 0;
 
 }
