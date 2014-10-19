@@ -16,7 +16,8 @@ class Buy {
       return a - b;
     } 
 };
-void storeItem(std::string, std::string[], int, int[], int);
+void storeItem(std::string, std::string, std::string[], int, int[], int&);
+void tradeItem(std::string, std::string, int, std::string, int);
 int location1 = 0;
 int location2 = 0;
 std::string newitemname1;
@@ -34,11 +35,23 @@ int balance1 = 1000;
 int balance2 = 1000;
 std::string user1;
 std::string user2;
+int answer;
 int yesorno;
 int setBalance(int);
 void getBalance(std::string);
 int main()
 {
+  std::cout << "Welcome to Project star Craft v0.0.1" << std::endl;
+  std::cout << "1. Make a new user ID" << std::endl;
+  std::cout << "2. Enter a star Craft Private Key" << std::endl;
+  std::cout << "3. Exit" << std::endl;
+  std::cin >> answer;
+  if(answer == 1)
+  {
+    std::cout << "Enter a username: " << std::endl;
+    std::cin >> user1;
+  
+  }
   std::cout << "make a new item" << std::endl;
   std::cout << "what is the name of your new item?" << std::endl;
   std::cin >> newitemname1;
@@ -52,7 +65,7 @@ int main()
   std::cin >> yesorno;
   if(yesorno == 12)
   {
-    for(int i = 0; i <= location1; i++)
+    for(int i = 0; i < location1; i++)
     {
       std::cout << iname1[i] << std::endl;
       std::cout << iquantity1[i] << std::endl;
@@ -85,18 +98,14 @@ int main()
 
   return 0;  
 }
+void storeItem(std::string userId, std::string itemName, std::string storename[], int quantity, int quantitystore[], int& locator)
+{
+storename[locator] = itemName;
+quantitystore[locator] = quantity;
+locator++;
+}
+void tradeItem(std::string useridentity, std::string itemSold, int itemSoldQuantity, std::string itemBought, int itemBoughtQuantity)
+{
+  std::cout << useridentity;
 
-void getBalance(std::string user)
-{
-  
-}
-int setBalance(std::string user, int balance)
-{
-  
-}
-void storeItem(std::string itemName, std::string storename[], int quantity, int quantitystore[], int locator)
-{
-  storename[locator] = itemName;
-  quantitystore[locator] = quantity;
-  locator++;
 }
