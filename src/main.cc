@@ -1,6 +1,5 @@
 #include <iostream>
 #include <istream>
-#include "../include/buy.h"
 class Authentication {
   public:
     void storeID(std::string);
@@ -16,6 +15,18 @@ class Buy {
       return a - b;
     } 
 };
+//look at the comments :D
+void createUser(std::string); //make a username and a unique one
+void createItem(std::string); //take a parameter of username and make an item from it
+void sellItem(std::string); //using username allow the sale of that persons item for any other item
+void buyItem(std::string); //using username allow the buy of any item that may ever exist in the future or that exists currently
+
+class coinBalance {
+  std::string user;
+  int balance;
+}
+
+
 void storeItem(std::string, std::string, std::string[], int, int[], int&);
 void tradeItem(std::string, std::string, int, std::string, int);
 int location1 = 0;
