@@ -37,6 +37,10 @@ int main()
     std::cout << "What is your username to be?" << std::endl;
     std::cin >> mem1.username;  
     mem1.loadCoins(mem1.username);
+    mem1.inventory[0] = mem1.username;
+    mem1.gainedInventory[0] = mem1.username;
+    mem1.gainedQuantities[0] = 10000;
+    mem1.inventoryQuantities[0] = 10000;
     std::cout << mem1.username << " you'll start off with " << mem1.starCoins << " starCoins, use them wisely" << std::endl;
   }
   else if (answer != 1)
@@ -52,6 +56,10 @@ int main()
     std::cout << "What is user2's name to be?" << std::endl;
     std::cin >> mem2.username;
     mem2.loadCoins(mem2.username);
+    mem2.inventory[0] = mem2.username;
+    mem2.gainedInventory[0] = mem2.username;
+    mem2.gainedQuantities[0] = 10000;
+    mem2.inventoryQuantities[0] = 10000;
     std::cout << mem2.username << " you'll start off with " << mem2.starCoins << " starCoins, use them wisely" << std::endl; 
   }
   else if (answer != 1)
@@ -74,6 +82,7 @@ int main()
     activeUser = mem2.username;
     std::cout << "welcome " << mem2.username << " you are the active user" << std::endl;
   }
+  
 
   return 0;
 
