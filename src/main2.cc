@@ -8,7 +8,7 @@ class member {
   std::string inventory[4000];
   int inventoryQuantities[4000];
   std::string gainedInventory[4000];
-  int gainedQuantites[4000];
+  int gainedQuantities[4000];
   int locator;
   public:
     void buy(std::string);
@@ -21,9 +21,10 @@ class member {
       starCoins = 10000;
     }
 };
-
+void funActions(std::string);
 std::string activeUser;
 int answer;
+int response;
 int main()
 {
   member mem1;
@@ -82,8 +83,29 @@ int main()
     activeUser = mem2.username;
     std::cout << "welcome " << mem2.username << " you are the active user" << std::endl;
   }
+  do
+  {
   
+  
+  
+  } while (response == 0);
+
+  if (response == 100)
 
   return 0;
+
+}
+
+void funActions(std::string nameOfUser)
+{
+  int response = 0;
+  do
+  {
+  
+  
+  
+  
+  } while(response == 0);
+
 
 }
