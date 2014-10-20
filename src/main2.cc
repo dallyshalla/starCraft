@@ -12,8 +12,7 @@ class member {
   int locator;
   public:
     void buy(std::string);
-    void sell(std::string);
-    void createItems(std::string);
+    void sell(std::string);    
     void destroyItems(std::string);
     void storeNewItem(std::string);
     void loadCoins(std::string)
@@ -21,10 +20,14 @@ class member {
       starCoins = 10000;
     }
 };
-void funActions(std::string);
+void createItems(std::string, std::string, int, member);
+int funActions(std::string);
 std::string activeUser;
 int answer;
 int response;
+int stateanswer;
+int quantity;
+std::string name;
 int main()
 {
   member mem1;
@@ -83,19 +86,28 @@ int main()
     activeUser = mem2.username;
     std::cout << "welcome " << mem2.username << " you are the active user" << std::endl;
   }
-  funActions(activeUser);
-
-  if (response == 100)
+  do
+  {
+    if(funActions(activeUser) == 1)
+    {
+      std::cout << "You can create an item" << std::endl;
+      std::cout << "what is the name of the item" << std::endl;
+      std::cin >> name;
+      std::cout << "what is the amout of " << name << " that will exist" << std::endl;
+      std::cin >> quantity;
+      createItems(activeUser, name, quantity, mem1);
+    }
+    std::cout << " are you finished ? type 0 if you're done" << std::endl;
+    std::cin >> stateanswer;
+  } while (stateanswer != 0);
 
   return 0;
 
 }
 
-void funActions(std::string nameOfUser)
+int funActions(std::string nameOfUser)
 {
   int response = 100;
-  do
-  {
     std::cout << nameOfUser << "Your commands are as follows" << std::endl;
     std::cout << "1. createItems" << std::endl;
     std::cout << "2. View Created Items" << std::endl;
@@ -104,9 +116,14 @@ void funActions(std::string nameOfUser)
     std::cout << "5. Destroy Created Items" << std::endl;
     std::cout << "0. Exit" << std::endl;
     std::cin >> response;
+
+  return response;
+
+}
+void createItems(std::string userName, std::string nameOfItem, int quantity, member mems)
+{
+  mems.username = userName;
   
-  
-  } while(response != 0);
 
 
 }
