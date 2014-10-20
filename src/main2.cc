@@ -83,12 +83,7 @@ int main()
     activeUser = mem2.username;
     std::cout << "welcome " << mem2.username << " you are the active user" << std::endl;
   }
-  do
-  {
-  
-  
-  
-  } while (response == 0);
+  funActions(activeUser);
 
   if (response == 100)
 
@@ -98,14 +93,20 @@ int main()
 
 void funActions(std::string nameOfUser)
 {
-  int response = 0;
+  int response = 100;
   do
   {
+    std::cout << nameOfUser << "Your commands are as follows" << std::endl;
+    std::cout << "1. createItems" << std::endl;
+    std::cout << "2. View Created Items" << std::endl;
+    std::cout << "3. View starCoin balance" << std::endl;
+    std::cout << "4. View Gained Items" << std::endl;
+    std::cout << "5. Destroy Created Items" << std::endl;
+    std::cout << "0. Exit" << std::endl;
+    std::cin >> response;
   
   
-  
-  
-  } while(response == 0);
+  } while(response != 0);
 
 
 }
