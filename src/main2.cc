@@ -26,6 +26,7 @@ std::string activeUser;
 int answer;
 int response;
 int stateanswer;
+int lateanswer;
 int quantity;
 std::string name;
 int main()
@@ -43,6 +44,7 @@ int main()
     mem1.loadCoins(mem1.username);
     mem1.inventory[0] = mem1.username;
     mem1.gainedInventory[0] = mem1.username;
+    mem1.locator++;
     mem1.gainedQuantities[0] = 10000;
     mem1.inventoryQuantities[0] = 10000;
     std::cout << mem1.username << " you'll start off with " << mem1.starCoins << " starCoins, use them wisely" << std::endl;
@@ -88,7 +90,8 @@ int main()
   }
   do
   {
-    if(funActions(activeUser) == 1)
+    lateanswer = funActions(activeUser);
+    if(lateanswer == 1)
     {
       std::cout << "You can create an item" << std::endl;
       std::cout << "what is the name of the item" << std::endl;
@@ -97,8 +100,17 @@ int main()
       std::cin >> quantity;
       createItems(activeUser, name, quantity, mem1);
     }
-    std::cout << " are you finished ? type 0 if you're done" << std::endl;
+    if (lateanswer == 2)
+    {
+      for(int i = 0; i <= mem1.locator; i++)
+      {
+        std::cout << mem1.inventory[i] << std::endl;
+      }
+    
+    }
+    std::cout << " are you finished ? type 0 if you're done, otherwise press anything" << std::endl;
     std::cin >> stateanswer;
+
   } while (stateanswer != 0);
 
   return 0;
@@ -122,8 +134,9 @@ int funActions(std::string nameOfUser)
 }
 void createItems(std::string userName, std::string nameOfItem, int quantity, member mems)
 {
-  mems.username = userName;
-  
+  mems.inventory[mems.locator] = nameOfItem;
+  mems.inventoryQuantities[mems.locator] = quantity;
+  mems.locator++; //have to do this by reference
 
 
 }
