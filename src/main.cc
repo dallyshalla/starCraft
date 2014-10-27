@@ -64,52 +64,6 @@ int main()
      
     
   } while(answer != 0);
-
- /* 
-  for(;;)
-  {
-    std::cout << "Welcome to star Craft Version - Infinity" << std::endl;
-    std::cout << "1. Set usernames" << std::endl;
-  
-    std::cin >> answer;
-
-    if((answer<1 || answer>1)&& answer!= 27)
-    {
-      switch(answer) {
-        case 1:
-          increaseInt(lol);
-          break;
-        case 27:
-          return 0;
-      }
-    }
-
-      else {
-        std::cout << "Invalid";
-        continue;
-    }
-  }
-  
-  // the menu
-  while(answer != 00) {
-      std::cout << "Welcome to star Craft Version. Infinity" << std::endl;
-      std::cout << "1. Set usernames" << std::endl;
-
-      do {
-        std::cin >> answer;
-      } while((answer<1 || answer>1)&&answer!=27); //esc=ASCII 27
-      
-      switch(answer) {
-      
-        case 1:
-          break;
-        
-        default:
-          std::cout << "Bad Option"<< std::endl; //Well it will never execute!
-          break ;
-      }
-
-    } */
   increaseInt(lol);
 
   return 0;
