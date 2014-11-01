@@ -103,7 +103,7 @@ int main()
 void createItem(std::vector<std::vector<int> > quant1, std::vector<std::string> name1, std::string username)
 {
     std::vector<int> row;
-    makeRow(quant1);
+    //makeRow(quant1);
     //quant1.push_back(name1.find(username), row);
 }
 void menu(int& selector, std::vector<std::string> userStore)
