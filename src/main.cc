@@ -99,7 +99,12 @@ int main()
   } while(answer != 0);
   return 0;
 }
-
+//make a row that adds some kind of unique data corresponding to a user like it's hash and store that in
+//index 0 of each row of make item; if the active user is the first row already existing - then expand from the that row'
+//
+void makeItem()
+{
+  }
 void createItem(std::vector<std::vector<int> > quant1, std::vector<std::string> name1, std::string username)
 {
     std::vector<int> row;
