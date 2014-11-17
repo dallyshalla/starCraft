@@ -1,10 +1,12 @@
 #include <iostream>
+#include <cstdlib>
+#include <istream>
 #include <string>
 #include <vector>
 #include "../include/sha512.h"
 
 
-int menu1(std::vector<std::string>&);
+int menu1(std::vector<std::string>&, int&);
 void menuSelectAlias(std::vector<std::string>&, int&, int&, int&);
 void menuExit(int&);
 void menuMakeItem(std::vector<std::string>&, int&, int&, int&, std::vector<std::vector<std::string> >&,
@@ -30,12 +32,12 @@ int main(int argc, char** argv)
     {
       if(answer == 1)
       {
-        answer = menu1(userAliasVector);
-        if(*indexPointer != -1)
-        {
-          menuMakeItem(userAliasVector, answer, aliasIndex, indexChoice, itemNameVector, itemDescriptionVector,
+        answer = menu1(userAliasVector, aliasIndex);
+      }
+      if(answer == 3)
+      {
+        menuMakeItem(userAliasVector, answer, aliasIndex, indexChoice, itemNameVector, itemDescriptionVector,
               itemQuantityVector);
-        }
       }
       if(answer == 2)
       {
@@ -55,7 +57,7 @@ int main(int argc, char** argv)
       return 0;
 }
 
-int menu1(std::vector<std::string>& aliasVector)
+int menu1(std::vector<std::string>& aliasVector, int& isAlias)
 {
     int answer(0);
     long long checks(0);
@@ -67,10 +69,18 @@ int menu1(std::vector<std::string>& aliasVector)
       std::cout << " 0. exit " << std::endl;
       std::cin >> answer;
     }
-    if(aliasVector.size() > 0)
+    if(aliasVector.size() > 0 && isAlias == -1)
     {
       std::cout << " 1. add alias " << std::endl;
       std::cout << " 2. select active alias " << std::endl;
+      std::cout << " 0. exit " << std::endl;
+      std::cin >> answer;
+    }
+    if(aliasVector.size() > 0 && isAlias > -1)
+    {
+      std::cout << " 1. add alias " << std::endl;
+      std::cout << " 2. select active alias " << std::endl;
+      std::cout << " 3. make an item on behalf of " << aliasVector[isAlias] << std::endl;
       std::cout << " 0. exit " << std::endl;
       std::cin >> answer;
     }
@@ -168,7 +178,7 @@ void menuSelectAlias(std::vector<std::string>& aliasVector, int& answer, int& al
         {
           std::cout << " enter the number corresponding with the desired alias " << std::endl;
           std::cin >> choice;
-          if(choice > aliasVector.size())
+          if(choice > aliasVector.size() - 1)
           {
               std::cout << " your choice of " << choice << " is out of range " << std::endl;
               is = 1;
@@ -193,12 +203,13 @@ void menuMakeItem(std::vector<std::string>& aliasVector, int& answer, int& alias
 {
   std::string itemName;
   std::string itemDescription;
+  std::string textAnswer;
   long long itemQuantity(0);
-  if(answer == 1)
+  if(answer == 3)
   {
     std::cout << " " << aliasVector.at(aliasIndex) << " welcome, you've arrived at Make Item " << std::endl;
     std::cout << " 1. start item creation " << std::endl;
-    std::cout << " 2. view status of current item " << std::endl;
+    std::cout << " 2. item " << std::endl;
     std::cout << " 3. store this item " << std::endl;
     std::cout << " 5. go home " << std::endl;
     std::cin >> answer;
@@ -210,11 +221,36 @@ void menuMakeItem(std::vector<std::string>& aliasVector, int& answer, int& alias
         std::cout << " we have your item name, now we need how many quantities of that item you have " << std::endl;
         std::cin >> itemQuantity;
         std::cout << " great, now place a brief 100 letter description about your software " << std::endl;
-        std::cin >> itemDescription;
-        std::cout << " your item is " << itemName << " with a quantity of " << itemQuantity << " " << std::endl;
-        std::cout << " described as: " << itemDescription << std::endl;
+        std::getline(std::cin,itemDescription);
+        std::getline(std::cin,itemDescription);
+        do
+        {
+          std::cout << " your item is " << itemName << " with a quantity of " << itemQuantity << " " << std::endl;
+          std::cout << " described as: " << itemDescription << std::endl;
+          std::cout << " if this is correct type 'yes' of not type 'no'" <<std::endl;
+          std::cin >> textAnswer;
+          if(textAnswer == "yes")
+          {
+            std::vector<std::string> stringNameStorage;
+            stringNameStorage.push_back(aliasVector.at(aliasIndex));
+            stringNameStorage.push_back(itemName);
+            pushItemName.push_back(stringNameStorage);
+            std::vector<std::string> stringDescriptionStorage;
+            stringDescriptionStorage.push_back(aliasVector.at(aliasIndex));
+            stringDescriptionStorage.push_back(itemDescription);
+            pushItemDescription.push_back(stringDescriptionStorage);
+            std::vector<int> intQuantityStorage;
+            intQuantityStorage.push_back(aliasIndex);
+            intQuantityStorage.push_back(itemQuantity);
+            pushItemQuantity.push_back(intQuantityStorage);
+            //store in a row aliasVector + itemName
+            //then push that into the itemNameVector 
+            //pushItemQuantity[aliasIndex].push_back(itemQuantity);
+            //pushItemDescription[aliasIndex].push_back(itemDescription);
+          }
 
-
+        } while(textAnswer != "yes");
+        
     }
   }
 }
