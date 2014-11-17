@@ -7,13 +7,23 @@
 int menu1(std::vector<std::string>&);
 void menuSelectAlias(std::vector<std::string>&, int&, int&, int&);
 void menuExit(int&);
-void menuMakeItem(std::vector<std::string>&, int&, int&, int&);
+void menuMakeItem(std::vector<std::string>&, int&, int&, int&, std::vector<std::vector<std::string> >&,
+    std::vector<std::vector<std::string> >&, std::vector<std::vector<int > >&);
+
 
 int main(int argc, char** argv)
 {
+    std::vector<std::vector<std::string> > itemNameVector;
+    std::vector<std::vector<std::string> > itemDescriptionVector;
+    std::vector<std::vector<int> > itemQuantityVector;  
+    std::string itemNameStorage;
+    std::string itemDescriptionStorage;
+    int itemQuantityStorage(0);
     int aliasIndex(-1);
     int answer(1);
     int indexChoice(0);
+    int& indexReference = aliasIndex;
+    int* indexPointer = &aliasIndex;
     std::vector<std::string> userAliasVector;
     std::vector<std::vector<int> > itemStorageVector;
     do
@@ -21,6 +31,11 @@ int main(int argc, char** argv)
       if(answer == 1)
       {
         answer = menu1(userAliasVector);
+        if(*indexPointer != -1)
+        {
+          menuMakeItem(userAliasVector, answer, aliasIndex, indexChoice, itemNameVector, itemDescriptionVector,
+              itemQuantityVector);
+        }
       }
       if(answer == 2)
       {
@@ -30,11 +45,11 @@ int main(int argc, char** argv)
       {
         menuExit(answer);
       }
-      if(aliasIndex > -1)
+      /*if(*indexPointer > -1)
       {
         menuMakeItem(userAliasVector, answer, aliasIndex, indexChoice);
-      }
-      std::cout << aliasIndex;
+      }*/
+      std::cout << *indexPointer;
     } while(answer != 0);
 
       return 0;
@@ -153,20 +168,33 @@ void menuSelectAlias(std::vector<std::string>& aliasVector, int& answer, int& al
         {
           std::cout << " enter the number corresponding with the desired alias " << std::endl;
           std::cin >> choice;
-          std::cout << " you have chosen " << aliasVector.at(choice) << " is this correct" << std::endl;
-          std::cout << " type 'yes' or 'no' " << std::endl;
-          std::cin >> stringAnswer;
-          if(stringAnswer == "yes") aliasIndex = choice;
-          else is = 1;
+          if(choice > aliasVector.size())
+          {
+              std::cout << " your choice of " << choice << " is out of range " << std::endl;
+              is = 1;
+          }
+          else
+          {
+              std::cout << " you have chosen " << aliasVector.at(choice) << " is this correct" << std::endl;
+              std::cout << " type 'yes' or 'no' " << std::endl;
+              std::cin >> stringAnswer;
+              if(stringAnswer == "yes") aliasIndex = choice;
+              else is = 1;
+          }
         } while(is == 10);
         answer = 1;
       }
     }
 }
 
-void menuMakeItem(std::vector<std::string>& aliasVector, int& answer, int& aliasIndex, int& indexchoice)
+void menuMakeItem(std::vector<std::string>& aliasVector, int& answer, int& aliasIndex, int& indexchoice,
+    std::vector<std::vector<std::string> >& pushItemName, std::vector<std::vector<std::string> >& pushItemDescription,
+    std::vector<std::vector<int> >& pushItemQuantity)
 {
-  if(answer == 11)
+  std::string itemName;
+  std::string itemDescription;
+  long long itemQuantity(0);
+  if(answer == 1)
   {
     std::cout << " " << aliasVector.at(aliasIndex) << " welcome, you've arrived at Make Item " << std::endl;
     std::cout << " 1. start item creation " << std::endl;
@@ -174,6 +202,20 @@ void menuMakeItem(std::vector<std::string>& aliasVector, int& answer, int& alias
     std::cout << " 3. store this item " << std::endl;
     std::cout << " 5. go home " << std::endl;
     std::cin >> answer;
+    if(answer == 1)
+    {
+        std::cout << " we will need some standard input " << std::endl;
+        std::cout << " please enter the name of your item " << std::endl;
+        std::cin >> itemName;
+        std::cout << " we have your item name, now we need how many quantities of that item you have " << std::endl;
+        std::cin >> itemQuantity;
+        std::cout << " great, now place a brief 100 letter description about your software " << std::endl;
+        std::cin >> itemDescription;
+        std::cout << " your item is " << itemName << " with a quantity of " << itemQuantity << " " << std::endl;
+        std::cout << " described as: " << itemDescription << std::endl;
+
+
+    }
   }
 }
 void menuExit(int& answer)
