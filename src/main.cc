@@ -249,8 +249,24 @@ void menuMakeItem(std::vector<std::string>& aliasVector, int& answer, int& alias
             //pushItemDescription[aliasIndex].push_back(itemDescription);
           }
 
-        } while(textAnswer != "yes");
-        
+        } while(textAnswer != "yes"); 
+    }
+    if(answer == 2)
+    {
+        for(long long i=0; i<(long)pushItemName.size(); ++i)
+        {
+          std::string storeActiveAlias = aliasVector.at(aliasIndex);
+          std::string storeItemNaming = pushItemName[i][0];
+            if(storeItemNaming == storeActiveAlias)
+            {
+              std::cout << pushItemName[i][1] << std::endl;
+            }
+        }
+        answer = 3;
+    }
+    if(answer == 5)
+    {
+        answer = 1;
     }
   }
 }
