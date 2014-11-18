@@ -6,15 +6,17 @@
 #include "../include/sha512.h"
 
 
-int menu1(std::vector<std::string>&, int&);
+int menu1(std::vector<std::string>&, int&, std::vector<std::vector<int > >&);
 void menuSelectAlias(std::vector<std::string>&, int&, int&, int&);
 void menuExit(int&);
 void menuMakeItem(std::vector<std::string>&, int&, int&, int&, std::vector<std::vector<std::string> >&,
     std::vector<std::vector<std::string> >&, std::vector<std::vector<int > >&);
+void menuSendCoin(std::vector<std::string>&, std::vector<std::vector<int > >&, int&);
 
 
 int main(int argc, char** argv)
 {
+    std::vector<std::vector<int > > starCoin;
     std::vector<std::vector<std::string> > itemNameVector;
     std::vector<std::vector<std::string> > itemDescriptionVector;
     std::vector<std::vector<int> > itemQuantityVector;  
@@ -32,7 +34,7 @@ int main(int argc, char** argv)
     {
       if(answer == 1)
       {
-        answer = menu1(userAliasVector, aliasIndex);
+        answer = menu1(userAliasVector, aliasIndex, starCoin);
       }
       if(answer == 3)
       {
@@ -57,7 +59,7 @@ int main(int argc, char** argv)
       return 0;
 }
 
-int menu1(std::vector<std::string>& aliasVector, int& isAlias)
+int menu1(std::vector<std::string>& aliasVector, int& isAlias, std::vector<std::vector<int > >& starCoins)
 {
     int answer(0);
     long long checks(0);
@@ -97,7 +99,13 @@ int menu1(std::vector<std::string>& aliasVector, int& isAlias)
         std::cout << " this alias has already been made " << std::endl;
       }
       else 
-      aliasVector.push_back(storeName);
+      {
+        aliasVector.push_back(storeName);
+        std::vector<int> rowForCoins;
+        rowForCoins.push_back(aliasVector.size()-1);
+        rowForCoins.push_back(10000);
+        starCoins.push_back(rowForCoins);
+      }
     }
     return answer;
 }
@@ -115,7 +123,10 @@ void menuSelectAlias(std::vector<std::string>& aliasVector, int& answer, int& al
       std::cout << " 1. search " << std::endl;
       std::cout << " 2. list each alias " << std::endl;
       std::cout << " 3. make new alias " << std::endl;
-      std::cout << " 4. view active alias " << std::endl;
+      if(aliasIndex > -1)
+      {
+        std::cout << " 4. view active alias " << std::endl;
+      }
       std::cout << " 5. go home " << std::endl;
       std::cout << " 91. set alias index " << std::endl;
       std::cout << " 0. exit program " << std::endl;
@@ -167,6 +178,11 @@ void menuSelectAlias(std::vector<std::string>& aliasVector, int& answer, int& al
           aliasVector.push_back(storeName);
           std::cout << " " << storeName << " you are ackowledged " << std::endl;
         }
+      }
+      if(answer == 4)
+      {
+        std::cout << " selected alias is: " << aliasVector.at(aliasIndex) << std::endl;
+        answer = 1;
       }
       if(answer == 5)
       {
@@ -248,7 +264,6 @@ void menuMakeItem(std::vector<std::string>& aliasVector, int& answer, int& alias
             //pushItemQuantity[aliasIndex].push_back(itemQuantity);
             //pushItemDescription[aliasIndex].push_back(itemDescription);
           }
-
         } while(textAnswer != "yes"); 
     }
     if(answer == 2)
@@ -259,7 +274,8 @@ void menuMakeItem(std::vector<std::string>& aliasVector, int& answer, int& alias
           std::string storeItemNaming = pushItemName[i][0];
             if(storeItemNaming == storeActiveAlias)
             {
-              std::cout << pushItemName[i][1] << std::endl;
+              std::cout << std::endl;
+              std::cout << " :: Name: " << pushItemName[i][1] << " :: Quantity: " << pushItemQuantity[i][1] << std::endl;
             }
         }
         answer = 3;
@@ -269,6 +285,12 @@ void menuMakeItem(std::vector<std::string>& aliasVector, int& answer, int& alias
         answer = 1;
     }
   }
+}
+
+void menuSendCoin(std::vector<std::string>& aliasVector, std::vector<std::vector<int > >& starCoins, int& answer)
+{
+
+
 }
 void menuExit(int& answer)
 {
