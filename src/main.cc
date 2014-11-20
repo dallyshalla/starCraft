@@ -11,7 +11,7 @@ void menuSelectAlias(std::vector<std::string>&, int&, int&, int&);
 void menuExit(int&);
 void menuMakeItem(std::vector<std::string>&, int&, int&, int&, std::vector<std::vector<std::string> >&,
     std::vector<std::vector<std::string> >&, std::vector<std::vector<int > >&);
-void menuSendCoin(std::vector<std::string>&, std::vector<std::vector<int > >&, int&);
+void menuSendCoin(std::vector<std::string>&, std::vector<std::vector<int > >&, int&, int&);
 
 
 int main(int argc, char** argv)
@@ -44,6 +44,10 @@ int main(int argc, char** argv)
       if(answer == 2)
       {
         menuSelectAlias(userAliasVector, answer, aliasIndex, indexChoice);
+      }
+      if(answer == 4)
+      {
+        menuSendCoin(userAliasVector, starCoin, answer, indexChoice);
       }
       if(answer == 0)
       {
@@ -83,6 +87,7 @@ int menu1(std::vector<std::string>& aliasVector, int& isAlias, std::vector<std::
       std::cout << " 1. add alias " << std::endl;
       std::cout << " 2. select active alias " << std::endl;
       std::cout << " 3. make an item on behalf of " << aliasVector[isAlias] << std::endl;
+      std::cout << " 4. send starCoins " << std::endl;
       std::cout << " 0. exit " << std::endl;
       std::cin >> answer;
     }
@@ -287,10 +292,43 @@ void menuMakeItem(std::vector<std::string>& aliasVector, int& answer, int& alias
   }
 }
 
-void menuSendCoin(std::vector<std::string>& aliasVector, std::vector<std::vector<int > >& starCoins, int& answer)
+void menuSendCoin(std::vector<std::string>& aliasVector, std::vector<std::vector<int > >& starCoins, int& answer, int&
+    indexchoice)
 {
-
-
+    std::string stringAnswer = " ";
+    int sendAmount(0);
+    int chosenAlias(0);
+    std::cout << " welcome to send starCoin menu " << std::endl;
+    std::cout << " 1. view your trusted alias's list and index number " << std::endl;
+    std::cout << " 2. send starCoin to known alias by index number " << std::endl;
+    std::cin >> answer;
+    if(answer == 1)
+    {
+      std::cout << std::endl;
+      for(long long i=0; i<(long)aliasVector.size(); ++i)
+      {
+        std::cout << i << " LL " << aliasVector.at(i) << std::endl;
+      }
+    }
+    std::cout << std::endl;
+    if(answer == 2)
+    {
+      do
+      {
+        std::cout << std::endl;
+        std::cout << " which index alias will you send starCoins to  " << std::endl;
+        std::cin >> chosenAlias;
+        std::cout << " send coins to " << aliasVector.at(chosenAlias) << " ? " << std::endl;
+        std::cout << " enter 'yes' or 'no' " << std::endl;
+        std::cin >> stringAnswer;
+      } while(stringAnswer != "yes");
+      stringAnswer = " ";
+      do
+      {
+        std::cout << " how many starCoins will you send to " << aliasVector.at(chosenAlias) << std::endl;
+        std::cin >> sendAmount;
+      } while(stringAnswer != "yes");
+    }
 }
 void menuExit(int& answer)
 {
