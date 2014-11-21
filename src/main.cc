@@ -49,6 +49,17 @@ int main(int argc, char** argv)
       {
         menuSendCoin(userAliasVector, starCoin, answer, indexChoice);
       }
+      if(answer == 5)
+      {
+          for(long long i=0; i<(long)starCoin.size(); ++i)
+          {
+            if(starCoin[i][0] == aliasIndex)
+            {
+              std::cout << " " << userAliasVector.at(aliasIndex) << " you have " << starCoin[i][1] << " starCoins " << std::endl;
+              answer = 1;
+            }
+          }
+      }
       if(answer == 0)
       {
         menuExit(answer);
@@ -88,6 +99,7 @@ int menu1(std::vector<std::string>& aliasVector, int& isAlias, std::vector<std::
       std::cout << " 2. select active alias " << std::endl;
       std::cout << " 3. make an item on behalf of " << aliasVector[isAlias] << std::endl;
       std::cout << " 4. send starCoins " << std::endl;
+      std::cout << " 5. check starCoin balance " << std::endl;
       std::cout << " 0. exit " << std::endl;
       std::cin >> answer;
     }
@@ -327,6 +339,20 @@ void menuSendCoin(std::vector<std::string>& aliasVector, std::vector<std::vector
       {
         std::cout << " how many starCoins will you send to " << aliasVector.at(chosenAlias) << std::endl;
         std::cin >> sendAmount;
+        std::cout << " sending " << sendAmount << " " << aliasVector.at(chosenAlias) << std::endl;
+        std::cout << " enter 'yes' if this correct or enter 'no' if this is incorrect " << std::endl;
+        std::cin >> stringAnswer;
+        if(stringAnswer == "yes")
+        {
+          std::cout << " sending " << sendAmount << " " << aliasVector.at(chosenAlias) << std::endl;
+          for(long long i=0; i<(long)starCoins.size(); ++i)
+          {
+            if(starCoins[i][0] == chosenAlias)
+            {
+              starCoins[i][1] += sendAmount;
+            }
+          }
+        }
       } while(stringAnswer != "yes");
     }
 }
