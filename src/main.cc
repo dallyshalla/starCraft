@@ -11,7 +11,7 @@ void menuSelectAlias(std::vector<std::string>&, int&, int&, int&);
 void menuExit(int&);
 void menuMakeItem(std::vector<std::string>&, int&, int&, int&, std::vector<std::vector<std::string> >&,
     std::vector<std::vector<std::string> >&, std::vector<std::vector<int > >&);
-void menuSendCoin(std::vector<std::string>&, std::vector<std::vector<int > >&, int&, int&);
+void menuSendCoin(std::vector<std::string>&, std::vector<std::vector<int > >&, int&, int&, int&);
 
 
 int main(int argc, char** argv)
@@ -47,7 +47,7 @@ int main(int argc, char** argv)
       }
       if(answer == 4)
       {
-        menuSendCoin(userAliasVector, starCoin, answer, indexChoice);
+        menuSendCoin(userAliasVector, starCoin, answer, indexChoice, aliasIndex);
       }
       if(answer == 5)
       {
@@ -305,7 +305,7 @@ void menuMakeItem(std::vector<std::string>& aliasVector, int& answer, int& alias
 }
 
 void menuSendCoin(std::vector<std::string>& aliasVector, std::vector<std::vector<int > >& starCoins, int& answer, int&
-    indexchoice)
+    indexchoice, int& aliasIndex)
 {
     std::string stringAnswer = " ";
     int sendAmount(0);
@@ -347,6 +347,10 @@ void menuSendCoin(std::vector<std::string>& aliasVector, std::vector<std::vector
           std::cout << " sending " << sendAmount << " " << aliasVector.at(chosenAlias) << std::endl;
           for(long long i=0; i<(long)starCoins.size(); ++i)
           {
+            if(starCoins[i][0] == aliasIndex)
+            {
+              starCoins[i][1] -= sendAmount;
+            }
             if(starCoins[i][0] == chosenAlias)
             {
               starCoins[i][1] += sendAmount;
@@ -354,6 +358,7 @@ void menuSendCoin(std::vector<std::string>& aliasVector, std::vector<std::vector
           }
         }
       } while(stringAnswer != "yes");
+      answer = 1;
     }
 }
 void menuExit(int& answer)
