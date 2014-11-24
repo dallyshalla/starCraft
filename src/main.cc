@@ -318,6 +318,7 @@ void menuSendCoin(std::vector<std::string>& aliasVector, std::vector<std::vector
     std::string stringAnswer = " ";
     int sendAmount(0);
     int chosenAlias(0);
+    int enoughFunds(-1);
     std::cout << " welcome to send starCoin menu " << std::endl;
     std::cout << " 1. view your trusted alias's list and index number " << std::endl;
     std::cout << " 2. send starCoin to known alias by index number " << std::endl;
@@ -357,11 +358,23 @@ void menuSendCoin(std::vector<std::string>& aliasVector, std::vector<std::vector
           {
             if(starCoins[i][0] == aliasIndex)
             {
-              starCoins[i][1] -= sendAmount;
+              if(starCoins[i][1] < sendAmount)
+              {
+                std::cout << " not enough balance to make this transaction, you have " << starCoins[i][1] <<
+                  std::endl;
+              }
+              else
+              {
+                starCoins[i][1] -= sendAmount;
+                enoughFunds = 1;
+              }
             }
             if(starCoins[i][0] == chosenAlias)
             {
-              starCoins[i][1] += sendAmount;
+              if(enoughFunds == 1)
+              {
+                starCoins[i][1] += sendAmount;
+              }
             }
           }
         }
@@ -369,6 +382,7 @@ void menuSendCoin(std::vector<std::string>& aliasVector, std::vector<std::vector
       answer = 1;
     }
 }
+
 void menuExit(int& answer)
 {
   if(answer == 0)
