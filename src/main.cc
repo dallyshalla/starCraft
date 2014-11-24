@@ -12,6 +12,8 @@ void menuExit(int&);
 void menuMakeItem(std::vector<std::string>&, int&, int&, int&, std::vector<std::vector<std::string> >&,
     std::vector<std::vector<std::string> >&, std::vector<std::vector<int > >&);
 void menuSendCoin(std::vector<std::string>&, std::vector<std::vector<int > >&, int&, int&, int&);
+void menuSellItem(std::vector<std::string>&);
+void menuBuyItem(std::vector<std::string>&);
 
 
 int main(int argc, char** argv)
@@ -27,7 +29,6 @@ int main(int argc, char** argv)
     int answer(1);
     int indexChoice(0);
     int& indexReference = aliasIndex;
-    int* indexPointer = &aliasIndex;
     std::vector<std::string> userAliasVector;
     std::vector<std::vector<int> > itemStorageVector;
     do
@@ -68,7 +69,11 @@ int main(int argc, char** argv)
       {
         menuMakeItem(userAliasVector, answer, aliasIndex, indexChoice);
       }*/
-      std::cout << *indexPointer;
+      std::cout << std::endl;
+      if(aliasIndex > -1)
+      {
+        std::cout << aliasIndex << " " << userAliasVector.at(aliasIndex) << " is the active alias" << std::endl;
+      }
     } while(answer != 0);
 
       return 0;
@@ -100,6 +105,8 @@ int menu1(std::vector<std::string>& aliasVector, int& isAlias, std::vector<std::
       std::cout << " 3. make an item on behalf of " << aliasVector[isAlias] << std::endl;
       std::cout << " 4. send starCoins " << std::endl;
       std::cout << " 5. check starCoin balance " << std::endl;
+      std::cout << " 6. sell items " << std::endl;
+      std::cout << " 7. buy items " >> std::endl;
       std::cout << " 0. exit " << std::endl;
       std::cin >> answer;
     }
@@ -250,7 +257,8 @@ void menuMakeItem(std::vector<std::string>& aliasVector, int& answer, int& alias
     {
         std::cout << " we will need some standard input " << std::endl;
         std::cout << " please enter the name of your item " << std::endl;
-        std::cin >> itemName;
+        std::getline(std::cin,itemName);
+        std::getline(std::cin,itemName);
         std::cout << " we have your item name, now we need how many quantities of that item you have " << std::endl;
         std::cin >> itemQuantity;
         std::cout << " great, now place a brief 100 letter description about your software " << std::endl;
