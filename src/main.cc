@@ -106,7 +106,7 @@ int menu1(std::vector<std::string>& aliasVector, int& isAlias, std::vector<std::
       std::cout << " 4. send starCoins " << std::endl;
       std::cout << " 5. check starCoin balance " << std::endl;
       std::cout << " 6. sell items " << std::endl;
-      std::cout << " 7. buy items " >> std::endl;
+      std::cout << " 7. buy items " << std::endl;
       std::cout << " 0. exit " << std::endl;
       std::cin >> answer;
     }
