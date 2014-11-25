@@ -1,7 +1,8 @@
 #include <iostream>
+#include <sstream>
+#include <string>
 #include <cstdlib>
 #include <istream>
-#include <string>
 #include <vector>
 #include "../include/sha512.h"
 
@@ -12,12 +13,13 @@ void menuExit(int&);
 void menuMakeItem(std::vector<std::string>&, int&, int&, int&, std::vector<std::vector<std::string> >&,
     std::vector<std::vector<std::string> >&, std::vector<std::vector<int > >&);
 void menuSendCoin(std::vector<std::string>&, std::vector<std::vector<int > >&, int&, int&, int&);
-void menuSellItem(std::vector<std::string>&);
-void menuBuyItem(std::vector<std::string>&);
+void menuSellItem(std::vector<std::string>&, int&, int&);
+void menuBuyItem(std::vector<std::string>&, int&, int&);
 
 
 int main(int argc, char** argv)
 {
+    std::vector<std::vector<std::string > > starCoinHash;
     std::vector<std::vector<int > > starCoin;
     std::vector<std::vector<std::string> > itemNameVector;
     std::vector<std::vector<std::string> > itemDescriptionVector;
@@ -60,6 +62,10 @@ int main(int argc, char** argv)
               answer = 1;
             }
           }
+      }
+      if(answer == 6)
+      {
+        menuSellItem(userAliasVector, answer, aliasIndex);
       }
       if(answer == 0)
       {
@@ -129,6 +135,20 @@ int menu1(std::vector<std::string>& aliasVector, int& isAlias, std::vector<std::
         rowForCoins.push_back(aliasVector.size()-1);
         rowForCoins.push_back(10000);
         starCoins.push_back(rowForCoins);
+
+        //security
+        std::vector<std::string> hashRowForCoins;
+        int intNumber = aliasVector.size()-1;
+        std::ostringstream ostr;
+        ostr << intNumber;
+        std::string intString = ostr.str();
+        std::cout << storeName;
+        std::string hashName;
+        hashName = sha512(intString);
+        std::cout << hashName;
+        std::cout << sha512("1");
+        //storeName = sha512.(intString);
+        hashRowForCoins.push_back(hashName);
       }
     }
     return answer;
@@ -382,7 +402,26 @@ void menuSendCoin(std::vector<std::string>& aliasVector, std::vector<std::vector
       answer = 1;
     }
 }
-
+void menuSellItem(std::vector<std::string>& aliasVector, int& answer, int& aliasindex)
+{
+  int localAnswer(0);
+  std::cout << " 1. list items owned by you " << aliasVector.at(aliasindex) << std::endl;
+  std::cout << " 2. search item list by name " << std::endl;
+  std::cout << " 3. search item list by description " << std::endl;
+  std::cout << " 4. select an item to sell by index from list " << std::endl;
+  std::cout << " 5. start item creation process " << std::endl;
+  std::cout << " 6. go home " << std::endl;
+  std::cin >> localAnswer;
+  switch(localAnswer)
+  {
+    case 1:
+      std::cout << " the indexes " << std::endl;
+      break;
+    case 6:
+      answer = 1;
+      break;
+  }
+}
 void menuExit(int& answer)
 {
   if(answer == 0)
