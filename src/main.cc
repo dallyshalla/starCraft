@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include <istream>
 #include <vector>
+#include <ctime>
 #include "../include/sha512.h"
 
 
@@ -19,7 +20,15 @@ void menuBuyItem(std::vector<std::string>&, int&, int&);
 
 int main(int argc, char** argv)
 {
-    std::vector<std::vector<std::string > > starCoinHash;
+    std::vector<std::vector<std::string> > starCoinHash;
+    //sell item storage;
+    std::vector<std::vector<std::string> > sellItemVectorNames;
+    std::vector<std::vector<std::string> > sellItemVectorDescriptions;
+    std::vector<std::vector<int> > sellItemVectorQuantities;
+    std::vector<std::vector<int> > sellItemVectorOwnerIndex;
+    std::vector<std::vector<std::string> > sellItemVectorOwnerName;
+    
+    //starCoin storage;
     std::vector<std::vector<int > > starCoin;
     std::vector<std::vector<std::string> > itemNameVector;
     std::vector<std::vector<std::string> > itemDescriptionVector;
@@ -137,18 +146,18 @@ int menu1(std::vector<std::string>& aliasVector, int& isAlias, std::vector<std::
         starCoins.push_back(rowForCoins);
 
         //security
+        time_t t = time(0);
+        std::cout << t << std::endl;
         std::vector<std::string> hashRowForCoins;
-        int intNumber = aliasVector.size()-1;
+        int intNumber = aliasVector.size()-1+t;
         std::ostringstream ostr;
         ostr << intNumber;
         std::string intString = ostr.str();
         std::cout << storeName;
         std::string hashName;
         hashName = sha512(intString);
-        std::cout << hashName;
-        std::cout << sha512("1");
-        //storeName = sha512.(intString);
         hashRowForCoins.push_back(hashName);
+        
       }
     }
     return answer;
@@ -378,7 +387,7 @@ void menuSendCoin(std::vector<std::string>& aliasVector, std::vector<std::vector
           {
             if(starCoins[i][0] == aliasIndex)
             {
-              if(starCoins[i][1] < sendAmount)
+              if(starCoins[i][1] < sendAmount+1)
               {
                 std::cout << " not enough balance to make this transaction, you have " << starCoins[i][1] <<
                   std::endl;
@@ -386,14 +395,13 @@ void menuSendCoin(std::vector<std::string>& aliasVector, std::vector<std::vector
               else
               {
                 starCoins[i][1] -= sendAmount;
-                enoughFunds = 1;
-              }
-            }
-            if(starCoins[i][0] == chosenAlias)
-            {
-              if(enoughFunds == 1)
-              {
-                starCoins[i][1] += sendAmount;
+                for(long long j=0; j<(long)starCoins.size(); ++j)
+                {
+                  if(starCoins[j][0] == chosenAlias)
+                  {
+                    starCoins[j][1] += sendAmount;
+                  }
+                }
               }
             }
           }
