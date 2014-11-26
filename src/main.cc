@@ -14,14 +14,14 @@ void menuExit(int&);
 void menuMakeItem(std::vector<std::string>&, int&, int&, int&, std::vector<std::vector<std::string> >&,
     std::vector<std::vector<std::string> >&, std::vector<std::vector<int > >&);
 void menuSendCoin(std::vector<std::string>&, std::vector<std::vector<int > >&, int&, int&, int&);
-void menuSellItem(std::vector<std::string>&, int&, int&);
+void menuSellItem(std::vector<std::string>&, int&, int&, std::vector<std::vector<std::string> >&);
 void menuBuyItem(std::vector<std::string>&, int&, int&);
 
 
 int main(int argc, char** argv)
 {
     std::vector<std::vector<std::string> > starCoinHash;
-    //sell item storage;
+    //sellItem storage;
     std::vector<std::vector<std::string> > sellItemVectorNames;
     std::vector<std::vector<std::string> > sellItemVectorDescriptions;
     std::vector<std::vector<int> > sellItemVectorQuantities;
@@ -30,17 +30,30 @@ int main(int argc, char** argv)
     
     //starCoin storage;
     std::vector<std::vector<int > > starCoin;
+
+    //createItem storage;
     std::vector<std::vector<std::string> > itemNameVector;
     std::vector<std::vector<std::string> > itemDescriptionVector;
     std::vector<std::vector<int> > itemQuantityVector;  
+    
+    //realtime variables storage
     std::string itemNameStorage;
     std::string itemDescriptionStorage;
     int itemQuantityStorage(0);
+
+    //store the active alias
     int aliasIndex(-1);
+
+    //user response storage
     int answer(1);
+
     int indexChoice(0);
     int& indexReference = aliasIndex;
+
+    //alias storage
     std::vector<std::string> userAliasVector;
+
+    //item attributes storage
     std::vector<std::vector<int> > itemStorageVector;
     do
     {
@@ -75,6 +88,10 @@ int main(int argc, char** argv)
       if(answer == 6)
       {
         menuSellItem(userAliasVector, answer, aliasIndex);
+      }
+      if(answer == 7)
+      {
+        answer = 1;
       }
       if(answer == 0)
       {
