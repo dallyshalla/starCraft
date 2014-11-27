@@ -14,7 +14,7 @@ void menuExit(int&);
 void menuMakeItem(std::vector<std::string>&, int&, int&, int&, std::vector<std::vector<std::string> >&,
     std::vector<std::vector<std::string> >&, std::vector<std::vector<int > >&);
 void menuSendCoin(std::vector<std::string>&, std::vector<std::vector<int > >&, int&, int&, int&);
-void menuSellItem(std::vector<std::string>&, int&, int&, std::vector<std::vector<std::string> >&);
+void menuSellItem(std::vector<std::string>&, int&, int&);
 void menuBuyItem(std::vector<std::string>&, int&, int&);
 
 
@@ -404,7 +404,8 @@ void menuSendCoin(std::vector<std::string>& aliasVector, std::vector<std::vector
           {
             if(starCoins[i][0] == aliasIndex)
             {
-              if(starCoins[i][1] < sendAmount+1)
+              int holder = sendAmount - 1;
+              if(starCoins[i][1] < holder)
               {
                 std::cout << " not enough balance to make this transaction, you have " << starCoins[i][1] <<
                   std::endl;
