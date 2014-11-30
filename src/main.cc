@@ -14,7 +14,9 @@ void menuExit(int&);
 void menuMakeItem(std::vector<std::string>&, int&, int&, int&, std::vector<std::vector<std::string> >&,
     std::vector<std::vector<std::string> >&, std::vector<std::vector<int > >&);
 void menuSendCoin(std::vector<std::string>&, std::vector<std::vector<int > >&, int&, int&, int&);
-void menuSellItem(std::vector<std::string>&, int&, int&);
+void menuSellItem(std::vector<std::string>&, int&, int&, std::vector<std::vector<std::string > >&, std::vector<std::vector<std::string > >&,
+    std::vector<std::vector<int > >&, std::vector<std::vector<int > >&, std::vector<std::vector<std::string > >&,
+    std::vector<std::vector<std::string > >&, std::vector<std::vector<std::string > >&, std::vector<std::vector<int > >&);
 void menuBuyItem(std::vector<std::string>&, int&, int&);
 
 
@@ -87,7 +89,9 @@ int main(int argc, char** argv)
       }
       if(answer == 6)
       {
-        menuSellItem(userAliasVector, answer, aliasIndex);
+        menuSellItem(userAliasVector, answer, aliasIndex, sellItemVectorNames, sellItemVectorDescriptions,
+            sellItemVectorQuantities, sellItemVectorOwnerIndex, sellItemVectorOwnerName, itemNameVector, itemDescriptionVector,
+            itemQuantityVector);
       }
       if(answer == 7)
       {
@@ -105,6 +109,10 @@ int main(int argc, char** argv)
       if(aliasIndex > -1)
       {
         std::cout << aliasIndex << " " << userAliasVector.at(aliasIndex) << " is the active alias" << std::endl;
+      }
+      if(answer > 7)
+      {
+        answer = 1;
       }
     } while(answer != 0);
 
@@ -428,7 +436,11 @@ void menuSendCoin(std::vector<std::string>& aliasVector, std::vector<std::vector
       answer = 1;
     }
 }
-void menuSellItem(std::vector<std::string>& aliasVector, int& answer, int& aliasindex)
+//store each new instance of an item sale into a new spot on the vector. 
+void menuSellItem(std::vector<std::string>& aliasVector, int& answer, int& aliasindex, std::vector<std::vector<std::string > >& sellListItemNames,
+    std::vector<std::vector<std::string > >& sellListtItemDescription, std::vector<std::vector<int > >& sellListItemQuantities, std::vector<std::vector<int > >&
+    sellListItemOwnerIndex, std::vector<std::vector<std::string > >& sellListItemOwnerName, std::vector<std::vector<std::string > >& ownedItemName, std::vector<std::vector<std::string > >& ownedItemDescription,
+    std::vector<std::vector<int > >& ownedItemQuantity)
 {
   int localAnswer(0);
   std::cout << " 1. list items owned by you " << aliasVector.at(aliasindex) << std::endl;
@@ -441,6 +453,14 @@ void menuSellItem(std::vector<std::string>& aliasVector, int& answer, int& alias
   switch(localAnswer)
   {
     case 1:
+     for(long long i=0; i<(long)ownedItemName.size(); ++i)
+      {
+        if(ownedItemName[i][0] == aliasVector.at(aliasindex))
+        {
+          std::cout << ownedItemName[i][1] << std::endl;
+        }
+      }
+      
       std::cout << " the indexes " << std::endl;
       break;
     case 6:
