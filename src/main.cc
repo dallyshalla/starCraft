@@ -24,6 +24,7 @@ int main(int argc, char** argv)
 {
     std::vector<std::vector<std::string> > starCoinHash;
     //sellItem storage;
+    std::vector<std::vector<std::string> > storeSellItemIdentityHash;
     std::vector<std::vector<std::string> > sellItemVectorNames;
     std::vector<std::vector<std::string> > sellItemVectorDescriptions;
     std::vector<std::vector<int> > sellItemVectorQuantities;
@@ -191,6 +192,7 @@ int menu1(std::vector<std::string>& aliasVector, int& isAlias, std::vector<std::
 void menuSelectAlias(std::vector<std::string>& aliasVector, int& answer, int& aliasIndex, int& indexchoice)
 {
   long long checks;
+  std::string 
   std::string stringAnswer;
   std::string storeName;
   long long choice(0);
@@ -205,9 +207,8 @@ void menuSelectAlias(std::vector<std::string>& aliasVector, int& answer, int& al
       {
         std::cout << " 4. view active alias " << std::endl;
       }
-      std::cout << " 5. go home " << std::endl;
-      std::cout << " 91. set alias index " << std::endl;
-      std::cout << " 0. exit program " << std::endl;
+      std::cout << " 5. return to Main Menu " << std::endl;
+      std::cout << " 6. choose acting alias " << std::endl;
       std::cin >> answer;
       if(answer == 1)
       {
@@ -266,12 +267,12 @@ void menuSelectAlias(std::vector<std::string>& aliasVector, int& answer, int& al
       {
         answer = 1;
       }
-      if(answer == 91)
+      if(answer == 6)
       {
         do
         {
           std::cout << " enter the number corresponding with the desired alias " << std::endl;
-          std::cin >> choice;
+          std::getline(std::cin, choice);
           if(choice > aliasVector.size() - 1)
           {
               std::cout << " your choice of " << choice << " is out of range " << std::endl;
@@ -303,7 +304,7 @@ void menuMakeItem(std::vector<std::string>& aliasVector, int& answer, int& alias
   {
     std::cout << " " << aliasVector.at(aliasIndex) << " welcome, you've arrived at Make Item " << std::endl;
     std::cout << " 1. start item creation " << std::endl;
-    std::cout << " 2. item " << std::endl;
+    std::cout << " 2. list items owned by LL: " << aliasVector.at(aliasIndex) << std::endl;
     std::cout << " 3. store this item " << std::endl;
     std::cout << " 5. go home " << std::endl;
     std::cin >> answer;
@@ -354,7 +355,7 @@ void menuMakeItem(std::vector<std::string>& aliasVector, int& answer, int& alias
             if(storeItemNaming == storeActiveAlias)
             {
               std::cout << std::endl;
-              std::cout << " :: Name: " << pushItemName[i][1] << " :: Quantity: " << pushItemQuantity[i][1] << std::endl;
+              std::cout << " LL: Name: " << pushItemName[i][1] << " LL: Quantity: " << pushItemQuantity[i][1] << std::endl;
             }
         }
         answer = 3;
@@ -382,7 +383,7 @@ void menuSendCoin(std::vector<std::string>& aliasVector, std::vector<std::vector
       std::cout << std::endl;
       for(long long i=0; i<(long)aliasVector.size(); ++i)
       {
-        std::cout << i << " LL " << aliasVector.at(i) << std::endl;
+        std::cout << i << " LL: " << aliasVector.at(i) << std::endl;
       }
     }
     std::cout << std::endl;
@@ -442,13 +443,14 @@ void menuSellItem(std::vector<std::string>& aliasVector, int& answer, int& alias
     sellListItemOwnerIndex, std::vector<std::vector<std::string > >& sellListItemOwnerName, std::vector<std::vector<std::string > >& ownedItemName, std::vector<std::vector<std::string > >& ownedItemDescription,
     std::vector<std::vector<int > >& ownedItemQuantity)
 {
+  int selectedItem(-1);
   int localAnswer(0);
   std::cout << " 1. list items owned by you " << aliasVector.at(aliasindex) << std::endl;
   std::cout << " 2. search item list by name " << std::endl;
   std::cout << " 3. search item list by description " << std::endl;
   std::cout << " 4. select an item to sell by index from list " << std::endl;
   std::cout << " 5. start item creation process " << std::endl;
-  std::cout << " 6. go home " << std::endl;
+  std::cout << " 6. exit Item Creation Menu " << std::endl;
   std::cin >> localAnswer;
   switch(localAnswer)
   {
@@ -457,11 +459,17 @@ void menuSellItem(std::vector<std::string>& aliasVector, int& answer, int& alias
       {
         if(ownedItemName[i][0] == aliasVector.at(aliasindex))
         {
-          std::cout << ownedItemName[i][1] << std::endl;
+          std::cout << "index# LL: " << i << " LL: " << ownedItemQuantity[i][1] << " LL: " << ownedItemName[i][1] << " LL: " << ownedItemDescription[i][1] << std::endl;
         }
       }
-      
-      std::cout << " the indexes " << std::endl;
+      break;
+    case 4:
+      std::cout << " enter the index for the item " << std::endl;
+      std::cin >> selectedItem;
+      answer = 1;
+      break;
+    case 5:
+      answer = 3;
       break;
     case 6:
       answer = 1;
