@@ -16,8 +16,8 @@ starCraft is free and unencumbered public domain software. For more information,
 
 
 How to Compile and Run:
-<br>Get to starCraft/src folder
-<br>g++ -c main.cc
-<br>g++ -c sha512.cc
-<br>g++ main.o sha512.o -o starCraft_build
-<br>./starCraft_buiild
+<br>Get to <strong>starCraft/src</strong> folder
+<br><strong>g++ -c main.cc</strong>
+<br><strong>g++ -c sha512.cc</strong>
+<br><strong>g++ main.o sha512.o -o starCraft_build</strong>
+<br><strong>./starCraft_buiild</strong>
