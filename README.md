@@ -13,3 +13,11 @@ The system shall run on [MaidSafe](http://maidsafe.net) Technology in order to e
 ## License
 
 starCraft is free and unencumbered public domain software. For more information, see [http://unlicense.org](http://unlicense.org) or the accompanying UNLICENSE file.
+
+
+How to Compile and Run:
+Get to starCraft/src folder
+g++ -c main.cc
+g++ -c sha512.cc
+g++ main.o sha512.o -o starCraft_build
+./starCraft_buiild
