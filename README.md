@@ -20,4 +20,4 @@ How to Compile and Run:
 <br><strong>g++ -c main.cc</strong>
 <br><strong>g++ -c sha512.cc</strong>
 <br><strong>g++ main.o sha512.o -o starCraft_build</strong>
-<br><strong>./starCraft_buiild</strong>
+<br><strong>./starCraft_build</strong>
