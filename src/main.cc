@@ -192,7 +192,7 @@ int menu1(std::vector<std::string>& aliasVector, int& isAlias, std::vector<std::
 void menuSelectAlias(std::vector<std::string>& aliasVector, int& answer, int& aliasIndex, int& indexchoice)
 {
   long long checks;
-  std::string 
+  std::string stringChoice;
   std::string stringAnswer;
   std::string storeName;
   long long choice(0);
@@ -272,7 +272,7 @@ void menuSelectAlias(std::vector<std::string>& aliasVector, int& answer, int& al
         do
         {
           std::cout << " enter the number corresponding with the desired alias " << std::endl;
-          std::getline(std::cin, choice);
+          std::getline(std::cin, stringChoice);
           if(choice > aliasVector.size() - 1)
           {
               std::cout << " your choice of " << choice << " is out of range " << std::endl;
@@ -444,6 +444,10 @@ void menuSellItem(std::vector<std::string>& aliasVector, int& answer, int& alias
     std::vector<std::vector<int > >& ownedItemQuantity)
 {
   int selectedItem(-1);
+  int itemQuantityStore(-1);
+  std::string itemNameStore;
+  std::string itemDescriptionStore;
+  std::string itemOwnerNameStore;
   int localAnswer(0);
   std::cout << " 1. list items owned by you " << aliasVector.at(aliasindex) << std::endl;
   std::cout << " 2. search item list by name " << std::endl;
@@ -466,6 +470,7 @@ void menuSellItem(std::vector<std::string>& aliasVector, int& answer, int& alias
     case 4:
       std::cout << " enter the index for the item " << std::endl;
       std::cin >> selectedItem;
+      itemQuantityStore = ownedItemQuantity[selectedItem][1];
       answer = 1;
       break;
     case 5:
